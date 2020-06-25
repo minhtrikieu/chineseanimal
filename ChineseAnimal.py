@@ -30,17 +30,17 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
         year = handler_input.request_envelope.request.intent.slots['year'].value
         try:
             data = ddb.get_item(
-                TableName="esp32_table_2",
+                TableName="esp_table_2",
                 Key={
                     'id': {
-                        'N': year
+                        'N': " ${year}"
                     }
                 }
             )
         except BaseException as e:
             print(e)
             raise(e)
-   
+        
         speech_text = "Your message is a " + data['Item']['message']['S'] 
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response     
