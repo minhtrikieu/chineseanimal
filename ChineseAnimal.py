@@ -32,7 +32,7 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
             data = ddb.get_item(
                 TableName="esp32_table",
                 Key={
-                    'chip_id': {
+                    'ts': {
                         'N': year
                 
                 }
