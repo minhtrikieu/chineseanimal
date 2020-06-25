@@ -30,9 +30,9 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
         year = handler_input.request_envelope.request.intent.slots['year'].value
         try:
             data = ddb.get_item(
-                TableName="esp32_table",
+                TableName="esp32_table_2",
                 Key={
-                    'ts': {
+                    'id': {
                         'N': year
                 
                 }
@@ -42,7 +42,7 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
             print(e)
             raise(e)
         
-        speech_text = "Your animal is a " + data['Item']['random_string']['S'] 
+        speech_text = "Your message is a " + data['Item']['message']['S'] 
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response     
 
