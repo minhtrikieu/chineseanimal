@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 46,
-          "column": 32
+          "lineNumber": 36,
+          "column": 34
         },
         "config": {
           "runtime": "python3.8",
@@ -62,6 +62,24 @@
             "mode": 1
           }
         }
+      },
+      "ddbesp32table2": {
+        "name": "ddbesp32table2",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/esp32_table_2",
+            "name": "esp32_table_2",
+            "partitionKey": "message",
+            "partitionKeyType": "S",
+            "hasSortKey": true,
+            "sortKey": "id",
+            "sortKeyType": "N",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
       }
     },
     "customTemplate": {
@@ -105,7 +123,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593067847502
+    "lastSave": 1593068254667
   },
   "VCS_STATE": {
     "provider": "GitHub",

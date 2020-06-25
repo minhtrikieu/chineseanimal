@@ -25,7 +25,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 class ChineseAnimalIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("ChineseAnimalIntent")(handler_input)
-
+        
     def handle(self, handler_input):
         year = handler_input.request_envelope.request.intent.slots['year'].value
         try:
@@ -34,14 +34,13 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
                 Key={
                     'id': {
                         'N': year
-                
-                }
+                    }
                 }
             )
         except BaseException as e:
             print(e)
             raise(e)
-        
+   
         speech_text = "Your message is a " + data['Item']['message']['S'] 
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response     
