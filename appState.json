@@ -1,0 +1,92 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "8323d0ee-90f0-4e1b-a06f-71ff862067c7": {
+        "id": "8323d0ee-90f0-4e1b-a06f-71ff862067c7",
+        "parent": null,
+        "name": "ChineseAnimal.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "ChineseAnimal.py",
+        "cursor": {
+          "lineNumber": 11,
+          "column": 83
+        },
+        "config": {
+          "runtime": "python3.8",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "ChineseAnimal"
+        },
+        "triggers": [
+          {
+            "resourceName": "alexaSKd64e53c1288a4cf79d4914d4ba2eb215",
+            "config": {}
+          }
+        ]
+      }
+    },
+    "openFiles": [
+      "8323d0ee-90f0-4e1b-a06f-71ff862067c7"
+    ],
+    "currentFileId": "8323d0ee-90f0-4e1b-a06f-71ff862067c7",
+    "resources": {
+      "alexaSKd64e53c1288a4cf79d4914d4ba2eb215": {
+        "name": "alexaSKd64e53c1288a4cf79d4914d4ba2eb215",
+        "type": "ALEXA",
+        "config": {
+          "type": 1,
+          "verifiedID": true,
+          "skillID": "amzn1.ask.skill.d64e53c1-288a-4cf7-9d49-14d4ba2eb215",
+          "applicationID": ""
+        }
+      }
+    },
+    "customTemplate": {
+      "overrideDefault": false,
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "ask_sdk_core": {
+          "name": "ask_sdk_core",
+          "version": "1.13.0",
+          "dev": false,
+          "language": "python"
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "ChineseAnimal",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "eu-west-2",
+    "platform": "AWS",
+    "language": "python",
+    "platformRegions": {},
+    "lastSave": 1593064835268
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "chineseanimal",
+      "url": "https://github.com/minhtrikieu/chineseanimal"
+    }
+  }
+}
