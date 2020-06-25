@@ -27,21 +27,7 @@ class ChineseAnimalIntentHandler(AbstractRequestHandler):
         return is_intent_name("ChineseAnimalIntent")(handler_input)
         
     def handle(self, handler_input):
-        year = handler_input.request_envelope.request.intent.slots['year'].value
-        try:
-            data = ddb.get_item(
-                TableName="esp_table_2",
-                Key={
-                    'id': {
-                        'N': " ${year}"
-                    }
-                }
-            )
-        except BaseException as e:
-            print(e)
-            raise(e)
-        
-        speech_text = "Your message is a " + data['Item']['message']['S'] 
+        speech_out = "this is agenda choice"
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response     
 
