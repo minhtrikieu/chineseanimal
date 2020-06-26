@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 30,
-          "column": 44
+          "lineNumber": 63,
+          "column": 177
         },
         "config": {
           "runtime": "python3.8",
@@ -98,11 +98,46 @@
             "mode": 0
           }
         }
+      },
+      "ddbeventbaymax2": {
+        "name": "ddbeventbaymax2",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/event_baymax_2",
+            "name": "event_baymax_2",
+            "partitionKey": "id",
+            "partitionKeyType": "S",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
+      },
+      "ddbeventbaymax3": {
+        "name": "ddbeventbaymax3",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/event_bay_max3",
+            "name": "event_bay_max3",
+            "partitionKey": "id",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
       }
     },
     "customTemplate": {
-      "overrideDefault": false,
-      "dialect": null,
+      "dialect": "CloudFormation",
       "definitions": null
     },
     "envVariables": [
@@ -141,7 +176,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593069048722
+    "lastSave": 1593156764024
   },
   "VCS_STATE": {
     "provider": "GitHub",

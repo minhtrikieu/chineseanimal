@@ -22,19 +22,51 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         handler_input.response_builder.speak("Sorry, there was some problem. Please try again!!")
         return handler_input.response_builder.response
 
-class ChineseAnimalIntentHandler(AbstractRequestHandler):
+class AgendaAskIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("ChineseAnimalIntent")(handler_input)
-        
+        return is_intent_name("AgendaAskIntent")(handler_input)   
     def handle(self, handler_input):
-        speech_out = "this is agenda choice"
+        year = handler_input.request_envelope.request.intent.slots['year'].value
+        try:
+            data = ddb.get_item(
+                TableName="event_bay_max3",
+                Key={
+                    'id': {
+                        'N': year
+                    }
+                }
+            )
+         except BaseException as e:
+            print(e)
+            raise(e)
+        speech_text = "The agenda is:"+ data['Item']['event']['S']+ " on "+data['Item']['date']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['place']['S']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-        return handler_input.response_builder.response     
+        return handler_input.response_builder.response    
 
+class MedicineAskIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("MedicineAskIntent")(handler_input)   
+    def handle(self, handler_input):
+        year = handler_input.request_envelope.request.intent.slots['year'].value
+        try:
+            data = ddb.get_item(
+                TableName="medicine_baymax",
+                Key={
+                    'id': {
+                        'N': year
+                    }
+                }
+            )
+         except BaseException as e:
+            print(e)
+            raise(e)
+        speech_text = "The medicine is"+ data['Item']['Medicine']['S']+ " on "+data['Item']['date']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['hospital']['S']
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
+        return handler_input.response_builder.response
 sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_exception_handler(CatchAllExceptionHandler())
-sb.add_request_handler(ChineseAnimalIntentHandler())
-
+sb.add_request_handler(AgendaAskIntentHandler())
+sb.add_request_handler(MedicineAskIntentHandler())
 def handler(event, context):
     return sb.lambda_handler()(event, context)
