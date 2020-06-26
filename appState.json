@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 52,
-          "column": 36
+          "lineNumber": 64,
+          "column": 16
         },
         "config": {
           "runtime": "python3.8",
@@ -152,6 +152,42 @@
             "mode": 1
           }
         }
+      },
+      "ddbmedicine": {
+        "name": "ddbmedicine",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/medicine",
+            "name": "medicine",
+            "partitionKey": "ID",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
+      },
+      "ddbmedicine1": {
+        "name": "ddbmedicine1",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 0,
+          "table": {
+            "arn": "",
+            "name": "medicine1",
+            "partitionKey": "ID",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 0
+          }
+        }
       }
     },
     "customTemplate": {
@@ -194,7 +230,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593159600389
+    "lastSave": 1593186003918
   },
   "VCS_STATE": {
     "provider": "GitHub",
