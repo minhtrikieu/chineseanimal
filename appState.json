@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 65,
-          "column": 16
+          "lineNumber": 52,
+          "column": 36
         },
         "config": {
           "runtime": "python3.8",
@@ -134,6 +134,24 @@
             "mode": 1
           }
         }
+      },
+      "ddbmedicinebaymax": {
+        "name": "ddbmedicinebaymax",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/medicine_baymax",
+            "name": "medicine_baymax",
+            "partitionKey": "id",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
       }
     },
     "customTemplate": {
@@ -176,7 +194,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593159018871
+    "lastSave": 1593159600389
   },
   "VCS_STATE": {
     "provider": "GitHub",

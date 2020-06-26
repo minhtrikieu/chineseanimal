@@ -10,7 +10,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return is_request_type("LaunchRequest")(handler_input)
 
     def handle(self, handler_input):
-        handler_input.response_builder.speak("Welcome to Bay Max. Choose Agenda or Schedule ").set_should_end_session(False)
+        handler_input.response_builder.speak("Welcome to Bay Max. Choose Agenda or Medicine ").set_should_end_session(False)
         return handler_input.response_builder.response    
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
@@ -60,7 +60,6 @@ class MedicineAskIntentHandler(AbstractRequestHandler):
         except BaseException as e:
             print(e)
             raise(e)
-
         speech_text = "The medicine is"+ data['Item']['medicine']['S']+ " on "+data['Item']['date']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['hospital']['S']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
