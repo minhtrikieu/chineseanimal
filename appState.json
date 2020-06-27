@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 76,
-          "column": 50
+          "lineNumber": 95,
+          "column": 79
         },
         "config": {
           "runtime": "python3.8",
@@ -27,7 +27,16 @@
             "resourceName": "alexaSKd64e53c1288a4cf79d4914d4ba2eb215",
             "config": {}
           }
-        ]
+        ],
+        "testCases": {
+          "8aed2ff0-0e06-42a2-a3d6-ccf0f454298f": {
+            "id": "8aed2ff0-0e06-42a2-a3d6-ccf0f454298f",
+            "name": "Test event",
+            "functionId": "8323d0ee-90f0-4e1b-a06f-71ff862067c7",
+            "event": "{\r\n    \"header\": {\r\n        \"payloadVersion\": \"1\",\r\n        \"namespace\": \"Control\",\r\n        \"name\": \"SwitchOnOffRequest\"\r\n    },\r\n    \"payload\": {\r\n        \"switchControlAction\": \"TURN_ON\",\r\n        \"appliance\": {\r\n            \"additionalApplianceDetails\": {\r\n                \"key2\": \"value2\",\r\n                \"key1\": \"value1\"\r\n            },\r\n            \"applianceId\": \"sampleId\"\r\n        },\r\n        \"accessToken\": \"sampleAccessToken\"\r\n    }\r\n}",
+            "eventTemplate": "alexa-smart-home-control"
+          }
+        }
       }
     },
     "openFiles": [
@@ -278,7 +287,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593242092428
+    "lastSave": 1593242985371
   },
   "VCS_STATE": {
     "provider": "GitHub",

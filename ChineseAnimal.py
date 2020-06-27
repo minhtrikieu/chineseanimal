@@ -4,7 +4,7 @@ from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.utils import is_request_type, is_intent_name
-import time
+
 from datetime import datetime
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -12,7 +12,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return is_request_type("LaunchRequest")(handler_input)
 
     def handle(self, handler_input):
-        handler_input.response_builder.speak("Welcome to Bay Max. Choose Agenda or Medicine ").set_should_end_session(False)
+        handler_input.response_builder.speak("Welcome to Bay Max. Choose Agenda or Medicine or Help ...").set_should_end_session(False)
         return handler_input.response_builder.response    
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
@@ -72,8 +72,7 @@ class HelpAskIntenttHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         number = handler_input.request_envelope.request.intent.slots['number'].value
         command ="Need Help"
-        time.ctime() 
-        datetime.now().strf("%m-%d-%Y %H:%M:%S") 
+        time =datetime.ctime(datetime.today())
         try:
             data = client.put_item(
                 TableName="help_table",
@@ -82,16 +81,18 @@ class HelpAskIntenttHandler(AbstractRequestHandler):
                         'N': number
                     },
                     'command': {
-                        'S': "command" + time.ctime()
+                        'S': command 
+                    },
+                    'time':{
+                        'S': time
                     }
                 }
             )
+
         except BaseException as e:
             print(e)
             raise(e)
-        
-        
-        speech_text ="Successfully update " 
+        speech_text ="Help Command is sent, waiting till the nurse responds .. " 
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
