@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 64,
-          "column": 16
+          "lineNumber": 76,
+          "column": 50
         },
         "config": {
           "runtime": "python3.8",
@@ -108,7 +108,7 @@
             "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/event_baymax_2",
             "name": "event_baymax_2",
             "partitionKey": "id",
-            "partitionKeyType": "S",
+            "partitionKeyType": "N",
             "hasSortKey": false,
             "sortKey": "",
             "sortKeyType": "S",
@@ -188,6 +188,42 @@
             "mode": 0
           }
         }
+      },
+      "ddbhelptable": {
+        "name": "ddbhelptable",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/help_table",
+            "name": "help_table",
+            "partitionKey": "id",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
+      },
+      "ddbmedicinebaymax2": {
+        "name": "ddbmedicinebaymax2",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/medicine_baymax_2",
+            "name": "medicine_baymax_2",
+            "partitionKey": "id",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
       }
     },
     "customTemplate": {
@@ -218,6 +254,18 @@
           "version": "1.12.27",
           "dev": true,
           "notRemovable": false
+        },
+        "time": {
+          "name": "time",
+          "version": "3.7",
+          "dev": false,
+          "language": "python"
+        },
+        "datetime ": {
+          "name": "datetime ",
+          "version": "3.2",
+          "dev": false,
+          "language": "python"
         }
       }
     }
@@ -230,7 +278,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593186003918
+    "lastSave": 1593242092428
   },
   "VCS_STATE": {
     "provider": "GitHub",

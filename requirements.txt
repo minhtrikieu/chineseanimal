@@ -1,2 +1,4 @@
 ask_sdk_core == 1.13.0
 boto3 == 1.12.27
+time == 3.7
+datetime  == 3.2
