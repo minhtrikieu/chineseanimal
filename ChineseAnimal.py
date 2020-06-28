@@ -59,7 +59,6 @@ class MedicineAskIntentHandler(AbstractRequestHandler):
         day = handler_input.request_envelope.request.intent.slots['day'].value
         comp = str(hour) + ":"+ str(minute)
         
-        
         try:
             data = client.get_item(
                 TableName="medicine_baymax_1",
@@ -75,6 +74,21 @@ class MedicineAskIntentHandler(AbstractRequestHandler):
         except BaseException as e:
             print(e)
             raise(e)
+        
+        speech_text ="The medicine is: "+data['Item']['medicine']['S'] +" with amount " + data['Item']['amount']['N']
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
+        return handler_input.response_builder.response
+
+class DeleteMedicineIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("DeleteMedicineIntent")(handler_input)   
+    def handle(self, handler_input):
+        hour = handler_input.request_envelope.request.intent.slots['hour'].value
+        minute =handler_input.request_envelope.request.intent.slots['minute'].value
+        day = handler_input.request_envelope.request.intent.slots['day'].value
+        comp = str(hour) + ":"+ str(minute)
+        
+        
         
         speech_text ="The medicine is: "+data['Item']['medicine']['S'] +" with amount " + data['Item']['amount']['N']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
@@ -113,9 +127,16 @@ class HelpAskIntenttHandler(AbstractRequestHandler):
 sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_exception_handler(CatchAllExceptionHandler())
+
 sb.add_request_handler(MedicineAskIntentHandler())
+sb.add_request_handler(DeleteMedicinetHandler())
+
 sb.add_request_handler(AgendaAskIntentHandler())
+sb.add_request_handler(DeleteAgendaIntentHandler())
+
 sb.add_request_handler(HelpAskIntenttHandler())
+
+
 
 def handler(event, context):
     return sb.lambda_handler()(event, context)
