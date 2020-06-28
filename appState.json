@@ -11,8 +11,8 @@
         "isRemovable": true,
         "filePath": "ChineseAnimal.py",
         "cursor": {
-          "lineNumber": 95,
-          "column": 79
+          "lineNumber": 48,
+          "column": 1
         },
         "config": {
           "runtime": "python3.8",
@@ -233,6 +233,42 @@
             "mode": 1
           }
         }
+      },
+      "ddbmedicinebaymax1": {
+        "name": "ddbmedicinebaymax1",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/medicine_baymax_1",
+            "name": "medicine_baymax_1",
+            "partitionKey": "time",
+            "partitionKeyType": "S",
+            "hasSortKey": true,
+            "sortKey": "day",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
+      },
+      "ddbeventbaymax1": {
+        "name": "ddbeventbaymax1",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 1,
+          "table": {
+            "arn": "arn:aws:dynamodb:eu-west-2:272588681797:table/event_baymax_1",
+            "name": "event_baymax_1",
+            "partitionKey": "date",
+            "partitionKeyType": "S",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 1
+          }
+        }
       }
     },
     "customTemplate": {
@@ -287,7 +323,7 @@
     "platform": "AWS",
     "language": "python",
     "platformRegions": {},
-    "lastSave": 1593242985371
+    "lastSave": 1593359942418
   },
   "VCS_STATE": {
     "provider": "GitHub",

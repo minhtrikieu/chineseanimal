@@ -29,19 +29,24 @@ class AgendaAskIntentHandler(AbstractRequestHandler):
         return is_intent_name("AgendaAskIntent")(handler_input)   
     def handle(self, handler_input):
         year = handler_input.request_envelope.request.intent.slots['year'].value
+        month = handler_input.request_envelope.request.intent.slots['month'].value
+        day = handler_input.request_envelope.request.intent.slots['days'].value
+        comp = str(year) + "-" + month.capitalize() + "-" + str(day)
         try:
             data = client.get_item(
-                TableName="event_baymax_2",
+                TableName="event_baymax_1",
                 Key={
-                    'id': {
-                        'N': year
+                    'date': {
+                        'S': comp
                     }
                 }
             )
         except BaseException as e:
             print(e)
             raise(e)
-        speech_text =  "The agenda is: "+ data['Item']['event']['S']+ " on "+data['Item']['date']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['place']['S']
+        
+    
+        speech_text =  "The agenda is: "+ data['Item']['event']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['place']['S']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response    
 
@@ -49,20 +54,29 @@ class MedicineAskIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("MedicineAskIntent")(handler_input)   
     def handle(self, handler_input):
-        number = handler_input.request_envelope.request.intent.slots['year'].value
+        hour = handler_input.request_envelope.request.intent.slots['hour'].value
+        minute =handler_input.request_envelope.request.intent.slots['minute'].value
+        day = handler_input.request_envelope.request.intent.slots['day'].value
+        comp = str(hour) + ":"+ str(minute)
+        
+        
         try:
             data = client.get_item(
-                TableName="medicine_baymax_2",
+                TableName="medicine_baymax_1",
                 Key={
-                    'id': {
-                        'N': number
+                    'time': {
+                        'S': comp
+                    },
+                    'day': {
+                        'S': day.capitalize()
                     }
                 }
             )
         except BaseException as e:
             print(e)
             raise(e)
-        speech_text ="The medicine is: "+data['Item']['medicine']['S'] +" amount " + data['Item']['amount']['S']+ " taken on " + data['Item']['weekday']['S']+" at "+ data['Item']['time']['S']
+        
+        speech_text ="The medicine is: "+data['Item']['medicine']['S'] +" with amount " + data['Item']['amount']['N']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
