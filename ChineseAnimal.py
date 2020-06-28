@@ -49,6 +49,30 @@ class AgendaAskIntentHandler(AbstractRequestHandler):
         speech_text =  "The agenda is: "+ data['Item']['event']['S']+" at "+data['Item']['time']['S'] + " in "+ data['Item']['place']['S']
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response    
+class DeleteAgendaIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("DeleteAgendaIntent")(handler_input)   
+    def handle(self, handler_input):
+        year = handler_input.request_envelope.request.intent.slots['year'].value
+        month = handler_input.request_envelope.request.intent.slots['month'].value
+        day = handler_input.request_envelope.request.intent.slots['days'].value
+        comp = str(year) + "-" + month.capitalize() + "-" + str(day)
+        try:
+            data = client.delete_item(
+                TableName="event_baymax_1",
+                Key={
+                    'date': {
+                        'S': comp
+                    }
+                }
+            )
+        except BaseException as e:
+            print(e)
+            raise(e)
+        
+        speech_text = "Successfully delete"
+        handler_input.response_builder.speak(speech_text).set_should_end_session(False)
+        return handler_input.response_builder.response
 
 class MedicineAskIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -88,13 +112,27 @@ class DeleteMedicineIntentHandler(AbstractRequestHandler):
         day = handler_input.request_envelope.request.intent.slots['day'].value
         comp = str(hour) + ":"+ str(minute)
         
+        try:
+            data = client.delete_item(
+                TableName="medicine_baymax_1",
+                Key={
+                    'time': {
+                        'S': comp
+                    },
+                    'day': {
+                        'S': day.capitalize()
+                    }
+                }
+            )
+        except BaseException as e:
+            print(e)
+            raise(e)
         
-        
-        speech_text ="The medicine is: "+data['Item']['medicine']['S'] +" with amount " + data['Item']['amount']['N']
+        speech_text = "Successfully delete"
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
-class HelpAskIntenttHandler(AbstractRequestHandler):
+class HelpAskIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return is_intent_name("HelpAskIntent")(handler_input)   
     def handle(self, handler_input):
@@ -124,17 +162,18 @@ class HelpAskIntenttHandler(AbstractRequestHandler):
         handler_input.response_builder.speak(speech_text).set_should_end_session(False)
         return handler_input.response_builder.response
 
+
 sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_exception_handler(CatchAllExceptionHandler())
 
 sb.add_request_handler(MedicineAskIntentHandler())
-sb.add_request_handler(DeleteMedicinetHandler())
+sb.add_request_handler(DeleteMedicineIntentHandler())
 
 sb.add_request_handler(AgendaAskIntentHandler())
 sb.add_request_handler(DeleteAgendaIntentHandler())
 
-sb.add_request_handler(HelpAskIntenttHandler())
+sb.add_request_handler(HelpAskIntentHandler())
 
 
 
